@@ -1,0 +1,21 @@
+version: '3'
+services:
+  redis-server:
+    image: 'redis'
+  fib-calculator:
+    restart: always
+    build: .
+    ports:
+      - "8080:8080"
+  tests:
+    image: maven:3
+    stop_signal: SIGKILL
+    stdin_open: true
+    tty: true
+    working_dir: $PWD
+    volumes:
+      - $PWD:$PWD
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Maven cache (optional)
+      - ~/.m2:/root/.m2
+    command: mvn test
