@@ -8,7 +8,7 @@ jdk:
   - oraclejdk8
 
 before_install:
-  - docker build -t docker-react -f Dockerfile.dev .
+  - docker build -t spring-docker .
 
 script:
   - docker-compose build
