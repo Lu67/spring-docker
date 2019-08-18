@@ -7,9 +7,6 @@ services:
 jdk:
   - oraclejdk8
 
-before_install:
-  - docker build -t spring-docker .
-
 script:
   - docker-compose build
   - docker-compose run tests
